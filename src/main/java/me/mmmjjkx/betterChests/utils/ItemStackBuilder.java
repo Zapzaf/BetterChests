@@ -1,6 +1,7 @@
 package me.mmmjjkx.betterChests.utils;
 
 import lombok.Getter;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -30,21 +31,25 @@ public class ItemStackBuilder {
     public ItemStackBuilder(Material material, String displayName, String... lore) {
         itemStack = new ItemStack(material);
         ItemMeta itemMeta = itemStack.getItemMeta();
-        itemMeta.setDisplayName(displayName);
-        itemMeta.setLore(Stream.of(lore).toList());
+        itemMeta.setDisplayName(color(displayName));
+        itemMeta.setLore(Stream.of(lore).map(ItemStackBuilder::color).toList());
         itemStack.setItemMeta(itemMeta);
     }
 
     public ItemStackBuilder(Material material, String displayName, List<String> lore) {
         this.itemStack = new ItemStack(material);
         ItemMeta itemMeta = itemStack.getItemMeta();
-        itemMeta.setDisplayName(displayName);
-        itemMeta.setLore(lore);
+        itemMeta.setDisplayName(color(displayName));
+        itemMeta.setLore(lore.stream().map(ItemStackBuilder::color).toList());
         itemStack.setItemMeta(itemMeta);
     }
 
     public ItemStackBuilder setAmount(int amount) {
         itemStack.setAmount(amount);
         return this;
+    }
+
+    private static String color(String s) {
+        return s == null ? null : ChatColor.translateAlternateColorCodes('&', s);
     }
 }

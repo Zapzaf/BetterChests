@@ -12,7 +12,8 @@
     <name>BetterChests</name>
 
     <properties>
-        <java.version>17</java.version>
+        <maven.compiler.proc>full</maven.compiler.proc>
+        <java.version>25</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -23,16 +24,15 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.13.0</version>
+                <version>3.16.0</version>
                 <configuration>
-                    <source>${java.version}</source>
-                    <target>${java.version}</target>
+                    <release>25</release>
                 </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
-                <version>3.5.3</version>
+                <version>3.6.2</version>
                 <executions>
                     <execution>
                         <phase>package</phase>
@@ -70,20 +70,24 @@
         <dependency>
             <groupId>io.papermc.paper</groupId>
             <artifactId>paper-api</artifactId>
-            <version>1.19.4-R0.1-SNAPSHOT</version>
+            <version>26.3.build.249-stable</version>
             <scope>provided</scope>
         </dependency>
+        <!-- Zapzaf/Slimefun4 fork (experimental branch) with Minecraft 26.3 support.
+             JitPack cannot build it, so install the release jar locally first:
+             mvn install:install-file -Dfile=Slimefun-4.9-UNOFFICIAL-26.3.jar -DgroupId=com.github.Zapzaf
+                 -DartifactId=Slimefun4 -Dversion=4.9-UNOFFICIAL-26.3 -Dpackaging=jar -->
         <dependency>
-            <groupId>com.github.Slimefun</groupId>
+            <groupId>com.github.Zapzaf</groupId>
             <artifactId>Slimefun4</artifactId>
-            <version>experimental-SNAPSHOT</version>
+            <version>4.9-UNOFFICIAL-26.3</version>
             <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.34</version>
+            <version>1.18.48</version>
             <scope>provided</scope>
         </dependency>
 

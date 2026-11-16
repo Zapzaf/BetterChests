@@ -267,8 +267,8 @@ public class SimpleDrawer extends SlimefunItem implements NotHopperable {
         }
 
         Component name = item.displayName();
-        if (name instanceof TranslatableComponent tc) {
-            return tc.args().get(0);
+        if (name instanceof TranslatableComponent tc && !tc.arguments().isEmpty()) {
+            return tc.arguments().get(0).asComponent();
         }
         return name;
     }
